@@ -31,33 +31,39 @@ function display() {
 function customer() {
     inquirer.prompt([{
             type: 'input',
-            message: "What is the ID of the product you would like to purchase?",
+            message: "What is the ID of the product you would like to purchase? [Q to quit]",
             name: 'id',
-            validate: function(input) {
-                if (isNaN(input) === true) {
+            validate: function (input) {
+                if (input === 'q' || input === 'Q') {
+                    process.exit(-1);
+                }
+                if (isNaN(input) === false) {
+                    return true;
+                } else if (isNaN(input) === true) {
                     console.log('\nYou need to provide a number');
                     return false;
-                }
-                else if (isNaN(input) === false) {
-                    return true;
                 }
             }
         },
         {
             type: "input",
-            message: "How many would you like?",
+            message: "How many would you like? [Q to quit]",
             name: "amount",
-            validate: function(input) {
-                if (isNaN(input) === true) {
+            validate: function (input) {
+                if (input === 'q' || input === 'Q') {
+                    process.exit(-1);
+                }
+                if (isNaN(input) === false) {
+                    return true;
+                } else if (isNaN(input) === true) {
                     console.log('\nYou need to provide a number');
                     return false;
-                }
-                else if (isNaN(input) === false) {
-                    return true;
                 }
             }
         }
     ]).then(function (response) {
+        if (response.id === 'q' || response.id === 'Q' || response.amount === 'q' || response.amount === 'Q') {
+        }
         buyItem(response.id, response.amount);
     })
 }
