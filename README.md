@@ -18,6 +18,8 @@ npm install
 as the packages are included in the dependencies in the package.json file.
 
 ## Using the program
+First you need to create a database in MySql with the code provided in bamazon.sql. Then you can run the following commands.
+
 Customer version
 ```
 node bamazonCustomer.js
